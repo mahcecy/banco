@@ -1,46 +1,34 @@
-const usuarios = [
-    {
-        "id": 1,
-        "email": "cecy@gmail.com",
-        "senha": "12345"
 
-    },
-
-    {
-        "id": 2,
-        "email": "dudu@gmail.com",
-        "senha": "67890"
-
-    },
-
-    {
-        "id": 3,
-        "email": "brian@gmail.com",
-        "senha": "54321"
-
-    }
-]
-const emailInput = document.getElementById("email")
-const senhaInput = document.getElementById("senha")
-const formulario = document.getElementById("formulario_login")
+const emailInputLogin = document.getElementById("email")
+const senhaInputLogin = document.getElementById("senha")
+const formularioLogin = document.getElementById("formulario_login")
 
 // Quando o formulário for submetido
 // Ele envia e atualiza a pagina
 // Esse é o evento padrao ("Default") do html para a tag <form>
-formulario.addEventListener("submit", (event) => {
+formularioLogin.addEventListener("submit", (event) => {
     event.preventDefault()
-    const emailDigitado = emailInput.value
-    const senhaDigitada = senhaInput.value
+    const emailDigitado = emailInputLogin.value
+    const senhaDigitada = senhaInputLogin.value
 
-    console.log(emailDigitado)
-    console.log(senhaDigitada)
+//buscar no storage
 
-    const usuarioEncontrado = usuarios.find((usuario) => {
-        return (
-            usuario.email == emailDigitado &&
-            usuario.senha == senhaDigitada
-        )
-    })
+const usuarios = JSON.parse(localStorage.getItem("usuarios"))
+const usuarioEncontrado = usuarios.find ((usuario) => {
+    return (
+        usuario.email == emailDigitado &&
+        usuario.senha == senhaDigitada
+    )
+})
+
+
+
+    //const usuarioEncontrado = usuarios.find((usuario) => {
+      //  return (
+       //     usuario.email == emailDigitado &&
+       //     usuario.senha == senhaDigitada
+      //  )
+   // })
 
     if (usuarioEncontrado) {
         Swal.fire({
